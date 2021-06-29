@@ -9,6 +9,8 @@ import { MatRippleModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSelectModule } from '@angular/material/select';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+
 
 //Routes
 import { DashboardComponent } from '../../dashboard/dashboard.component';
@@ -28,6 +30,7 @@ import { AppointmentsComponent } from 'app/pages/appointments/appointments.compo
     MatInputModule,
     MatSelectModule,
     MatTooltipModule,
+    MatProgressSpinnerModule
   ],
   declarations: [
     DashboardComponent,

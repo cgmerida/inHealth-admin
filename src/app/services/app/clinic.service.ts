@@ -33,11 +33,23 @@ export class ClinicService {
 
   updateClinic(clinic: Clinic) {
     clinic.updatedAt = new Date();
-    return this.clinicCollection.doc(clinic.uid).update(clinic);
+    return this.clinicCollection.doc(clinic.uid).update(clinic)
+      .then(() => {
+        return `Clinica actualizada`;
+      })
+      .catch(err => {
+        return `Error: ${err}`;
+      });
   }
 
   deleteClinic(uid: Clinic['uid']) {
-    return this.clinicCollection.doc(uid).delete();
+    return this.clinicCollection.doc(uid).delete()
+    .then(() => {
+      return `Clinica eliminada`;
+    })
+    .catch(err => {
+      return `Error: ${err}`;
+    });
   }
 }
 

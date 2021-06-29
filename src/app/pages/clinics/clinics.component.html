@@ -21,6 +21,7 @@
               <th>Horarios</th>
               <th>Telefono</th>
               <th>Especialidades</th>
+              <th>Acciones</th>
             </thead>
             <tbody>
               <tr *ngFor="let clinic of clinics | async">
@@ -38,6 +39,21 @@
                       {{ specialty.doc }}
                     </td>
                   </tr>
+                </td>
+                <td style="display: inline-flex">
+                  <button
+                    class="btn btn-outline-info btn-sm"
+                    [routerLink]="['/clinics/edit']"
+                    [state]="{ data: clinic }"
+                  >
+                    <i class="material-icons">edit</i>
+                  </button>
+                  <button
+                    class="btn btn-outline-danger btn-sm"
+                    (click)="deleteClinic(clinic.uid)"
+                  >
+                    <i class="material-icons">delete</i>
+                  </button>
                 </td>
               </tr>
             </tbody>

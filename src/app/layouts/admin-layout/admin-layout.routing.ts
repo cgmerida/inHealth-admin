@@ -7,4 +7,5 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard', component: DashboardComponent },
     { path: 'clinics', component: ClinicsComponent },
     { path: 'clinics/create', component: ClinicFormComponent },
+    { path: 'clinics/edit', component: ClinicFormComponent },
 ];
