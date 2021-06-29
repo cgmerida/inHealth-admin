@@ -40,3 +40,15 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+
+/.idea
+/.ionic
+/.sass-cache
+/.sourcemaps
+/.versions
+/coverage
+/platforms
+/plugins
+/www
+/.firebase

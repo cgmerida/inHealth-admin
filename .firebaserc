@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "inhealth-dev"
+  },
+  "targets": {
+    "inhealth-dev": {
+      "hosting": {
+        "material-dashboard-angular": [
+          "inhealth-dev"
+        ]
+      }
+    }
+  }
+}

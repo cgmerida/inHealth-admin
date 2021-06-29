@@ -23,6 +23,10 @@ import {
 } from '@agm/core';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 
+// AngularFire
+import { AngularFireModule } from '@angular/fire';
+import { environment } from 'environments/environment';
+
 @NgModule({
   imports: [
     BrowserAnimationsModule,
@@ -32,9 +36,7 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
     ComponentsModule,
     RouterModule,
     AppRoutingModule,
-    AgmCoreModule.forRoot({
-      apiKey: 'YOUR_GOOGLE_MAPS_API_KEY'
-    })
+    AngularFireModule.initializeApp(environment.firebaseConfig, 'inHealth-admin')
   ],
   declarations: [
     AppComponent,
