@@ -1,0 +1,40 @@
+<div class="main-content">
+  <div class="row">
+    <div class="col-md-4 offset-md-4">
+      <div class="card card-profile">
+        <div class="card-avatar">
+          <a>
+            <img class="img" src="./assets/img/logo/logo-icono.svg" />
+          </a>
+        </div>
+        <div class="card-body">
+          <h4 class="card-title">Login</h4>
+          <form>
+            <mat-form-field>
+              <input matInput placeholder="Correo" type="email" #email autocomplete="on"/>
+            </mat-form-field>
+
+            <mat-form-field>
+              <input matInput placeholder="Password" type="password" #pass autocomplete="on" />
+            </mat-form-field>
+          </form>
+        </div>
+
+        <mat-spinner
+          *ngIf="loading"
+          class="spinner pull-right"
+          [diameter]="45"
+        ></mat-spinner>
+
+        <button
+          mat-flat-button
+          class="btn-block btn-purple"
+          [disabled]="loading"
+          (click)="logIn(email.value, pass.value)"
+        >
+          Log in
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

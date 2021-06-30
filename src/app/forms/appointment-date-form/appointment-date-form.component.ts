@@ -6,7 +6,7 @@ import { MatDialogRef } from '@angular/material/dialog';
   styleUrls: ['./appointment-date-form.component.css']
 })
 export class AppointmentDateFormComponent implements OnInit {
-
+  newDate: Date;
   constructor(
     public dialogRef: MatDialogRef<AppointmentDateFormComponent>,
     // @Inject(MAT_DIALOG_DATA) public data: Clinic

@@ -101,7 +101,7 @@ export class ClinicFormComponent implements OnInit {
     });
   }
 
-  addSpecialty(specialty: Clinic["specialties"][0]) {
+  addSpecialty(specialty?: Clinic["specialties"][0]) {
     this.specialties.push(new FormGroup({
       name: new FormControl(specialty ? specialty.name : null, Validators.required),
       doc: new FormControl(specialty ? specialty.doc : null, Validators.required),

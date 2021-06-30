@@ -1,0 +1,11 @@
+.body {
+  background-color: #bababa;
+}
+.main-content {
+  margin-top: 20vh;
+}
+
+.btn-purple {
+  background-color: var(--purple);
+  color: #efefef;
+}
