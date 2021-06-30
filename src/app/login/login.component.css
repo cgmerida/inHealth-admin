@@ -9,3 +9,8 @@
   background-color: var(--purple);
   color: #efefef;
 }
+
+.spinner {
+  display: flex;
+  margin: 0 auto;
+}

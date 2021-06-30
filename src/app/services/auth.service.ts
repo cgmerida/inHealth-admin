@@ -49,7 +49,6 @@ export class AuthService {
   async SignOut() {
     this.userSub.unsubscribe();
     await this.fireAuth.signOut();
-
     this.router.navigate(['login']);
   }
 
