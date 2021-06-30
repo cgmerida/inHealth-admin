@@ -1,0 +1,177 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="card">
+      <div class="card-header card-header-primary">
+        <h4 class="card-title">Seguimiento a Citas Médicas</h4>
+        <p class="card-category">Complete los campos.</p>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-4">
+            <mat-form-field>
+              <input
+                readonly
+                matInput
+                placeholder="Clinica"
+                [value]="appointment?.clinic.name"
+              />
+            </mat-form-field>
+          </div>
+          <div class="col-md-3">
+            <mat-form-field>
+              <input
+                readonly
+                matInput
+                placeholder="Especialidad"
+                [value]="appointment?.specialty.name"
+              />
+            </mat-form-field>
+          </div>
+          <div class="col-md-3">
+            <mat-form-field>
+              <input
+                readonly
+                matInput
+                placeholder="Doctor"
+                [value]="appointment?.specialty.doc"
+              />
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <mat-form-field>
+              <input
+                readonly
+                matInput
+                placeholder="Paciente"
+                [value]="user?.firstname + ' ' + user?.lastname"
+              />
+            </mat-form-field>
+          </div>
+        </div>
+
+        <h4>Seguimiento</h4>
+        {{ appointmentForm?.value | json }}
+        <form
+          [formGroup]="appointmentForm"
+          (ngSubmit)="onSubmit()"
+          *ngIf="appointmentForm"
+        >
+          <div class="row">
+            <div class="col-md-4">
+              <h5 class="card-category">Examenes y Diagnosticos</h5>
+            </div>
+            <div class="col-md-3">
+              <button
+                class="btn btn-dark btn-sm"
+                type="button"
+                (click)="addExam()"
+                [disabled]="loading"
+              >
+                Agregar Examen
+              </button>
+            </div>
+
+            <div class="col-md-3 mb-3">
+              <mat-form-field appearance="fill">
+                <mat-label>Status</mat-label>
+                <mat-select formControlName="status">
+                  <mat-option value="Esperando resultados">
+                    Esperando resultados
+                  </mat-option>
+                  <mat-option value="Completada"> Completada </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div formArrayName="exams" class="mb-4">
+            <div *ngFor="let exam of exams.controls; index as i">
+              <div class="row" [formGroupName]="i">
+                <div class="col-md-3">
+                  <mat-form-field>
+                    <input
+                      matInput
+                      placeholder="Nombre del Examen"
+                      formControlName="name"
+                    />
+                  </mat-form-field>
+                </div>
+                <div class="col-md-1">
+                  <mat-form-field>
+                    <input
+                      matInput
+                      type="number"
+                      placeholder="Precio"
+                      formControlName="price"
+                    />
+                  </mat-form-field>
+                </div>
+
+                <div class="col-md-3">
+                  <mat-form-field>
+                    <input
+                      readonly
+                      matInput
+                      placeholder="Examen URL"
+                      formControlName="url"
+                    />
+                  </mat-form-field>
+                </div>
+
+                <div class="col-md-3">
+                  <mat-label class="mr-3">Documento</mat-label>
+                  <button
+                    class="btn btn-primary btn-sm"
+                    type="button"
+                    (click)="openFile(i)"
+                    [disabled]="loading"
+                  >
+                    <i class="material-icons">add</i>
+                  </button>
+                  <input
+                    class="d-none"
+                    type="file"
+                    accept="image/jpeg, image/png, application/pdf, .doc, .docx"
+                    [id]="'filepicker' + i"
+                    (change)="onFileChoose($event, i)"
+                  />
+
+                  <input class="d-none" [id]="'url' + i" />
+                </div>
+
+                <div class="col-md-2">
+                  <button
+                    mat-raised-button
+                    class="btn btn-danger btn-sm"
+                    (click)="removeExam(i)"
+                    [disabled]="loading"
+                  >
+                    Eliminar
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button
+            mat-raised-button
+            type="submit"
+            class="btn btn-primary pull-right"
+            [disabled]="!appointmentForm.valid || loading"
+          >
+            Actualizar
+          </button>
+          <mat-spinner
+            *ngIf="loading"
+            class="spinner pull-right"
+            [diameter]="45"
+          ></mat-spinner>
+        </form>
+
+        <div class="clearfix"></div>
+      </div>
+      <!-- Card Body -->
+    </div>
+  </div>
+</div>

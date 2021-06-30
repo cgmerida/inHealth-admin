@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestoreCollection, AngularFirestore } from '@angular/fire/firestore';
-import { Appointment, status_enum } from 'app/models/appointment';
+import { Appointment } from 'app/models/appointment';
 import { User } from 'app/models/user';
 import { Observable } from 'rxjs';
-import { flatMap } from 'rxjs/operators';
 import { AuthService } from '../auth.service';
 
 @Injectable({
@@ -33,12 +32,24 @@ export class AppointmentService {
       .valueChanges({ idField: 'uid' });
   }
 
-  updateAppointment(appointment: Appointment) {
+  updateAppointment(appointment) {
     appointment.updatedAt = new Date();
-    return this.appointmentCollection.doc(appointment.uid).update(appointment);
+    return this.appointmentCollection.doc(appointment.uid).update(appointment)
+      .then(() => {
+        return `Cita actualizada`;
+      })
+      .catch(err => {
+        return `Error: ${err}`;
+      });
   }
 
   deleteAppointment(uid: Appointment['uid']) {
-    return this.appointmentCollection.doc(uid).delete();
+    return this.appointmentCollection.doc(uid).delete()
+      .then(() => {
+        return `Cita eliminada`;
+      })
+      .catch(err => {
+        return `Error: ${err}`;
+      });
   }
 }

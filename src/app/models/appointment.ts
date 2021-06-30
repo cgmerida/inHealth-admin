@@ -15,13 +15,20 @@ export const enum status_enum {
 
 export interface Appointment {
   uid?: string;
+  clinic: Partial<Clinic>;
+  specialty: Clinic["specialties"][0];
   date: Timestamp;
-  clinic: string;
-  specialty: Clinic["specialties"];
   status: status_enum;
+  exams: Exam[];
   owner: User["uid"];
   doneAt?: Timestamp | Date;
   createdAt: Timestamp | Date;
   updatedAt: Timestamp | Date;
 
+}
+
+interface Exam {
+  name: string;
+  price: number
+  url: string;
 }

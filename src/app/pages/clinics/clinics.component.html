@@ -24,7 +24,7 @@
               <th>Acciones</th>
             </thead>
             <tbody>
-              <tr *ngFor="let clinic of clinics | async">
+              <tr *ngFor="let clinic of clinics | async; trackBy: trackId">
                 <td>{{ clinic.uid }}</td>
                 <td>{{ clinic.name }}</td>
                 <td>{{ clinic.dir }}</td>

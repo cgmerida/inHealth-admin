@@ -51,5 +51,8 @@ export class ClinicsComponent implements OnInit {
     });
   }
 
+  trackId(i, clinic: Clinic) { return clinic.uid; }
+
+
 
 }

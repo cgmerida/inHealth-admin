@@ -1,1 +1,74 @@
-<p>appointments works!</p>
+<div class="main-content">
+  <div class="container-fluid">
+    <!-- <button
+      mat-raised-button
+      class="btn btn-primary ml-3"
+      routerLink="/appointments/create"
+    >
+      Crear Cita
+    </button> -->
+    <div class="card mt-">
+      <div class="card-header card-header-danger">
+        <h4 class="card-title">Lista de Citas Médicas</h4>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table">
+            <thead class="text-primary">
+              <th>ID</th>
+              <th>Clinica</th>
+              <th>Especialidad</th>
+              <th>Doctor</th>
+              <th>Paciente</th>
+              <th>Fecha</th>
+              <th>Estatus</th>
+              <th>Acciones</th>
+            </thead>
+            <tbody>
+              <tr *ngFor="let appointment of appointments | async">
+                <td>{{ appointment.uid }}</td>
+                <td>{{ appointment.clinic.name }}</td>
+                <td>{{ appointment.specialty.name }}</td>
+                <td>{{ appointment.specialty.doc }}</td>
+                <td>
+                  <div *ngIf="appointment.user | async as userData">
+                    {{ userData.firstname + " " + userData.lastname }}
+                  </div>
+                </td>
+                <td>
+                  {{ appointment.date.toDate() | date: "dd/MM/yyyy h:mm a" }}
+                </td>
+                <td [class]="statusColor[appointment.status]">
+                  {{ appointment.status }}
+                </td>
+                <td style="display: inline-flex">
+                  <button
+                    class="btn btn-outline-primary btn-sm"
+                    (click)="trackAppointment(appointment)"
+                    [disabled]="appointment.status === 'Cancelada'"
+                  >
+                    <i class="material-icons">visibility</i>
+                  </button>
+                  <button
+                    class="btn btn-outline-info btn-sm"
+                    (click)="changeDate(appointment)"
+                    [disabled]="appointment.status === 'Cancelada'"
+                  >
+                    <i class="material-icons">more_time</i>
+                  </button>
+                  <button
+                    class="btn btn-outline-danger btn-sm"
+                    (click)="cancelAppointment(appointment.uid)"
+                    [disabled]="appointment.status === 'Cancelada'"
+                  >
+                    <i class="material-icons">event_busy</i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
