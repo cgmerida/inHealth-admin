@@ -103,8 +103,7 @@ export class AppointmentTrackComponent implements OnInit {
 
   async onFileChoose(event: Event, i) {
     this.loading = true;
-    let actualExam = this.appointmentForm.get("exams")[i].value;
-
+    let actualExam = this.appointmentForm.get(["exams", i]).value;
     if (!actualExam.name) {
       this.presentAlert('danger', `<strong>Error</strong> - Se debe definir el nombre del archivo`);
       this.loading = false;
@@ -133,7 +132,7 @@ export class AppointmentTrackComponent implements OnInit {
       return;
     }
 
-    this.appointmentForm.get("exams")[i].get('url').setValue(imgUrl);
+    this.appointmentForm.get(["exams", i, 'url']).setValue(imgUrl);
     this.presentAlert('success', `Se registro el archivo correctamente`);
     this.loading = false;
   }
@@ -147,7 +146,7 @@ export class AppointmentTrackComponent implements OnInit {
 
   async removeExam(i: number) {
     this.loading = true;
-    let url = this.appointmentForm.get("exams")[i].get('url').value;
+    let url = this.appointmentForm.get(["exams", i, 'url']).value;
 
     if (url) {
       try {
